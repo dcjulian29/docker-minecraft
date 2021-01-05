@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  minecraft:
+    #build: .
+    image: 'dcjulian29/minecraft:latest'
+    environment:
+      - TZ=America/New_York
+    ports:
+      - target: 25565
+        published: 25565
+    volumes:
+      - ./.docker/minecraft/world:/minecraft/world
+      - ./.docker/minecraft/nether:/minecraft/world_nether
+      - ./.docker/minecraft/the_end:/minecraft/world_the_end
+      - ./ops.json:/minecraft/ops.json

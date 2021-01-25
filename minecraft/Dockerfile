@@ -1,14 +1,15 @@
 FROM alpine:latest
 
 ENV TZ        UTC
-ENV VERSION   1.16.4
 
 RUN apk update && apk add openjdk11-jre git
 
 RUN mkdir /minecraft && cd /minecraft \
-    && wget "https://launcher.mojang.com/v1/objects/35139deedbd5182953cf1caa23835da59ca3d7cd/server.jar" \
+    && wget "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar" \
     && echo eula=true > eula.txt \
     && mkdir /minecraft/plugins
+
+ENV VERSION   1.16.5
 
 RUN cd /tmp \
     && wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \

@@ -2,7 +2,8 @@ FROM alpine:latest
 
 ENV TZ        UTC
 
-RUN apk update && apk add openjdk11-jre git
+RUN apk update && apk add openjdk11-jre git \
+    && rm -rf /var/cache/apk/*
 
 RUN mkdir /minecraft && cd /minecraft \
     && wget "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar" \
@@ -16,27 +17,31 @@ RUN cd /tmp \
     && java -jar BuildTools.jar --rev ${VERSION} \
     && java -jar BuildTools.jar --rev ${VERSION} --compile craftbukkit \
     && mv spigot-${VERSION}.jar /minecraft/spigot.jar \
-    && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar
+    && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar \
+    && rm -Rf /tmp/* /var/tmp/*
 
 RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/2869/453/worldedit-bukkit-7.1.0.jar
+    && wget https://media.forgecdn.net/files/3283/695/worldedit-bukkit-7.2.5-dist.jar
 
 RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/2855/477/worldguard-bukkit-7.0.2.jar
+    && wget https://media.forgecdn.net/files/3066/271/worldguard-bukkit-7.0.4.jar
 
 RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/2768/599/Multiverse-Core-4.1.0.jar
+    && wget https://media.forgecdn.net/files/3074/594/Multiverse-Core-4.2.2.jar
 
 RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/2768/601/Multiverse-Portals-4.1.0.jar
+    && wget https://media.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar
 
 RUN cd /minecraft/plugins \
     && wget https://media.forgecdn.net/files/2744/510/LaggRemover-2.0.6.jar
 
-RUN rm -Rf /tmp/* /var/tmp/* \
-    && rm -rf /var/cache/apk/*
+RUN cd /minecraft/plugins \
+    && wget https://media.forgecdn.net/files/3242/277/Dynmap-3.1-spigot.jar
 
-EXPOSE 25565
+RUN cd /minecraft/plugins \
+    && wget https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar
+
+EXPOSE 25565 19132/udp
 
 VOLUME [ "/minecraft/world", "/minecraft/world_nether", "/minecraft/world_the_end" ]
 

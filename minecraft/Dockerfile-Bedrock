@@ -12,7 +12,7 @@ RUN mkdir /minecraft && cd /minecraft \
     && rm bedrock-server-${VERSION}.zip \
     && chmod 755 /minecraft/bedrock_server
 
-EXPOSE 19132 19133
+EXPOSE 19132/udp
 
 VOLUME [ "/minecraft/worlds" ]
 

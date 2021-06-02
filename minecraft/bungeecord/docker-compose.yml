@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+
+  bungeecord:
+    image: dcjulian29/minecraft:latest-bungeecord
+    ports:
+      - '25565:25565'
+    volumes:
+      - ./bungeecord.yml:/minecraft/config.yml
+    networks:
+      - minecraft
+
+  spigot1:
+    image: dcjulian29/minecraft:latest
+    volumes:
+      - ./../.docker/spigot1/world:/minecraft/world
+      - ./../.docker/spigot1/nether:/minecraft/world_nether
+      - ./../.docker/spigot1/the_end:/minecraft/world_the_end
+      - ./../ops.json:/minecraft/ops.json
+      - ./server.properties:/minecraft/server.properties
+      - ./spigot.yml:/minecraft/spigot.yml
+      - ./bukkit.yml:/minecraft/bukkit.yml
+    networks:
+      - minecraft
+
+  spigot2:
+    image: dcjulian29/minecraft:latest
+    volumes:
+      - ./../.docker/spigot2/world:/minecraft/world
+      - ./../.docker/spigot2/nether:/minecraft/world_nether
+      - ./../.docker/spigot2/the_end:/minecraft/world_the_end
+      - ./../ops.json:/minecraft/ops.json
+      - ./server.properties:/minecraft/server.properties
+      - ./spigot.yml:/minecraft/spigot.yml
+      - ./bukkit.yml:/minecraft/bukkit.yml
+    networks:
+      - minecraft
+
+  spigot3:
+    image: dcjulian29/minecraft:latest
+    volumes:
+      - ./../.docker/spigot3/world:/minecraft/world
+      - ./../.docker/spigot3/nether:/minecraft/world_nether
+      - ./../.docker/spigot3/the_end:/minecraft/world_the_end
+      - ./../ops.json:/minecraft/ops.json
+      - ./server.properties:/minecraft/server.properties
+      - ./spigot.yml:/minecraft/spigot.yml
+      - ./bukkit.yml:/minecraft/bukkit.yml
+    networks:
+      - minecraft
+
+networks:
+  minecraft:
+    driver: bridge

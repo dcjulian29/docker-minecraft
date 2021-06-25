@@ -5,8 +5,7 @@ services:
     environment:
       - TZ=America/New_York
     ports:
-      - target: 25565
-        published: 25565
+      - '25565:25565'
     volumes:
       - ./.docker/minecraft/world:/minecraft/world
       - ./.docker/minecraft/nether:/minecraft/world_nether

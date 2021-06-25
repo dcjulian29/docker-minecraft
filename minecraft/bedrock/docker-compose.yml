@@ -5,7 +5,7 @@ services:
     environment:
       - TZ=America/New_York
     ports:
-      - target: 19132/udp
-        published: 19132/udp
+      - '19132:19132/udp'
     volumes:
       - ../.docker/bedrock:/minecraft/worlds
+      - ./server.properties:/minecraft/server.properties:ro

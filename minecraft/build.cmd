@@ -1,13 +1,26 @@
-docker build -t dcjulian29/minecraft:1.16.5 .
-docker tag dcjulian29/minecraft:1.16.5 dcjulian29/minecraft:latest
+@echo off
+setlocal
 
-docker build -t dcjulian29/minecraft:1.16.5-vanilla -f Dockerfile-Vanilla .
-docker tag dcjulian29/minecraft:1.16.5-vanilla dcjulian29/minecraft:latest-vanilla
+set VERSION=1.17.0
+set BEDROCK=1.17.2.01
+set BUNGEECORD=1.5.85
 
-docker build -t dcjulian29/minecraft:1.16.221-bedrock -f Dockerfile-Bedrock .
-docker tag dcjulian29/minecraft:1.16.221-bedrock dcjulian29/minecraft:latest-bedrock
+docker build --pull --no-cache --progress plain -t dcjulian29/minecraft:%VERSION% .
+docker tag dcjulian29/minecraft:%VERSION% dcjulian29/minecraft:latest
 
-docker build -t dcjulian29/minecraft:1.16.5-bungeecord -f Dockerfile-BungeeCord .
-docker tag dcjulian29/minecraft:1.16.5-bungeecord dcjulian29/minecraft:latest-bungeecord
+pushd vanilla
+docker build --progress plain -t dcjulian29/minecraft:%VERSION%-vanilla .
+docker tag dcjulian29/minecraft:%VERSION%-vanilla dcjulian29/minecraft:latest-vanilla
+popd
 
-docker push dcjulian29/minecraft --all-tags
+pushd bedrock
+docker build --progress plain -t dcjulian29/minecraft:%BEDROCK%-bedrock .
+docker tag dcjulian29/minecraft:%BEDROCK%-bedrock dcjulian29/minecraft:latest-bedrock
+popd
+
+pushd bungeecord
+docker build --progress plain -t dcjulian29/bungeecord:%BUNGEECORD% .
+docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
+popd
+
+endlocal

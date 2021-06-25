@@ -9,6 +9,11 @@ set BUNGEECORD=1.5.85
 docker build --pull --no-cache --progress plain -t dcjulian29/minecraft:%VERSION% .
 docker tag dcjulian29/minecraft:%VERSION% dcjulian29/minecraft:latest
 
+pushd paper
+docker build --progress plain -t dcjulian29/minecraft:%VERSION%-paper .
+docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
+popd
+
 pushd vanilla
 docker build --progress plain -t dcjulian29/minecraft:%VERSION%-vanilla .
 docker tag dcjulian29/minecraft:%VERSION%-vanilla dcjulian29/minecraft:latest-vanilla

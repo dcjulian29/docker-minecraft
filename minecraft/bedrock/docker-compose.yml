@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  minecraft:
+    image: 'dcjulian29/minecraft:latest-bedrock'
+    environment:
+      - TZ=America/New_York
+    ports:
+      - target: 19132/udp
+        published: 19132/udp
+    volumes:
+      - ../.docker/bedrock:/minecraft/worlds

@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  minecraft:
+    image: 'dcjulian29/minecraft-vanilla:latest'
+    environment:
+      - TZ=America/New_York
+    ports:
+      - target: 25565
+        published: 25565
+    volumes:
+      - ../.docker/vanilla/world:/minecraft/world
+      - ../ops.json:/minecraft/ops.json

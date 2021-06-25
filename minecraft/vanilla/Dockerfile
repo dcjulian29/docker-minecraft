@@ -1,15 +1,11 @@
-FROM alpine:latest
+FROM openjdk:16-jdk-slim
 
-ENV TZ        UTC
+ENV TZ=UTC
 
-RUN apk update && apk add openjdk11-jre git
-
-RUN mkdir /minecraft && cd /minecraft \
-    && wget "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar" \
+RUN apt update && apt install -y wget git && apt clean \
+    && mkdir /minecraft && cd /minecraft \
+    && wget --progress=bar:force "https://launcher.mojang.com/v1/objects/0a269b5f2c5b93b1712d0f5dc43b6182b9ab254e/server.jar" \
     && echo eula=true > eula.txt
-
-RUN rm -Rf /tmp/* /var/tmp/* \
-    && rm -rf /var/cache/apk/*
 
 EXPOSE 25565
 

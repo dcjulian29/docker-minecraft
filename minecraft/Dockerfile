@@ -19,9 +19,9 @@ RUN cd /tmp \
 RUN mkdir /minecraft/plugins && cd /minecraft/plugins \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3283/695/worldedit-bukkit-7.2.5-dist.jar" \
     && cd /minecraft/plugins \
-    && wget --progress=bar:force "https://media.forgecdn.net/files/3066/271/worldguard-bukkit-7.0.4.jar" \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3342/964/worldguard-bukkit-7.0.5-dist.jar" \
     && cd /minecraft/plugins \
-    && wget --progress=bar:force "https://media.forgecdn.net/files/3074/594/Multiverse-Core-4.2.2.jar" \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3362/854/Multiverse-Core-4.3.0.jar" \
     && cd /minecraft/plugins \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar" \
     && cd /minecraft/plugins \
@@ -29,7 +29,7 @@ RUN mkdir /minecraft/plugins && cd /minecraft/plugins \
     && cd /minecraft/plugins \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3242/277/Dynmap-3.1-spigot.jar" \
     && cd /minecraft/plugins \
-    && wget --progress=bar:force "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
+    && wget --progress=bar:force "https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/734/artifact/bootstrap/bungeecord/target/Geyser-BungeeCord.jar"
 
 EXPOSE 25565 19132/udp
 

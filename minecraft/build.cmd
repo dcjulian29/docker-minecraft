@@ -1,5 +1,6 @@
 @echo off
 setlocal
+pushd %~dp0
 
 set VERSION=1.17.0
 set BEDROCK=1.17.2.01
@@ -23,4 +24,5 @@ docker build --progress plain -t dcjulian29/bungeecord:%BUNGEECORD% .
 docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
 popd
 
+popd
 endlocal

@@ -2,7 +2,7 @@ version: '3.8'
 services:
 
   bungeecord:
-    image: dcjulian29/minecraft:latest-bungeecord
+    image: dcjulian29/bungeecord:latest
     ports:
       - '25565:25565'
     volumes:

@@ -1,7 +1,6 @@
 version: '3.8'
 services:
   minecraft:
-    #build: .
     image: 'dcjulian29/minecraft:latest'
     environment:
       - TZ=America/New_York

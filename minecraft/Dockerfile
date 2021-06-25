@@ -1,45 +1,35 @@
-FROM alpine:latest
+FROM openjdk:16-jdk-slim
 
-ENV TZ        UTC
+ENV VERSION=1.17 \
+    TZ=UTC
 
-RUN apk update && apk add openjdk11-jre git \
-    && rm -rf /var/cache/apk/*
-
-RUN mkdir /minecraft && cd /minecraft \
-    && wget "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar" \
-    && echo eula=true > eula.txt \
-    && mkdir /minecraft/plugins
-
-ENV VERSION   1.16.5
+RUN apt update && apt install -y wget git && apt clean \
+    && mkdir /minecraft && cd /minecraft \
+    && wget --progress=bar:force "https://launcher.mojang.com/v1/objects/0a269b5f2c5b93b1712d0f5dc43b6182b9ab254e/server.jar" \
+    && echo eula=true > eula.txt
 
 RUN cd /tmp \
-    && wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar \
+    && wget --progress=bar:force "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" \
     && java -jar BuildTools.jar --rev ${VERSION} \
     && java -jar BuildTools.jar --rev ${VERSION} --compile craftbukkit \
     && mv spigot-${VERSION}.jar /minecraft/spigot.jar \
     && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar \
     && rm -Rf /tmp/* /var/tmp/*
 
-RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/3283/695/worldedit-bukkit-7.2.5-dist.jar
-
-RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/3066/271/worldguard-bukkit-7.0.4.jar
-
-RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/3074/594/Multiverse-Core-4.2.2.jar
-
-RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar
-
-RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/2744/510/LaggRemover-2.0.6.jar
-
-RUN cd /minecraft/plugins \
-    && wget https://media.forgecdn.net/files/3242/277/Dynmap-3.1-spigot.jar
-
-RUN cd /minecraft/plugins \
-    && wget https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar
+RUN mkdir /minecraft/plugins && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3283/695/worldedit-bukkit-7.2.5-dist.jar" \
+    && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3066/271/worldguard-bukkit-7.0.4.jar" \
+    && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3074/594/Multiverse-Core-4.2.2.jar" \
+    && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar" \
+    && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/2744/510/LaggRemover-2.0.6.jar" \
+    && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3242/277/Dynmap-3.1-spigot.jar" \
+    && cd /minecraft/plugins \
+    && wget --progress=bar:force "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
 
 EXPOSE 25565 19132/udp
 

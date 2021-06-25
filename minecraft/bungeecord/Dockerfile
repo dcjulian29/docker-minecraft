@@ -1,11 +1,10 @@
-FROM alpine:latest
+FROM openjdk:16-jdk-slim
 
-ENV TZ        UTC
+ENV TZ=UTC
 
-RUN apk update && apk add openjdk11-jre && rm -rf /var/cache/apk/*
-
-RUN mkdir /minecraft && cd /minecraft \
-    && wget "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
+RUN apt update && apt install -y wget && apt clean \
+    && mkdir /minecraft && cd /minecraft \
+    && wget --progress=bar:force "https://ci.md-5.net/job/BungeeCord/1585/artifact/bootstrap/target/BungeeCord.jar"
 
 EXPOSE 25565
 

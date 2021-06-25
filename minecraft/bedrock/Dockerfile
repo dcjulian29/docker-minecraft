@@ -1,13 +1,13 @@
 FROM ubuntu:latest
 
 ENV TZ        UTC
-ENV VERSION   1.16.221.01
+ENV VERSION   1.17.2.01
 ENV LD_LIBRARY_PATH /minecraft
 
 RUN apt update && apt dist-upgrade -y && apt install wget unzip -y
 
 RUN mkdir /minecraft && cd /minecraft \
-    && wget "https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip" \
+    && wget --progress=bar:force "https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip" \
     && unzip bedrock-server-${VERSION}.zip \
     && rm bedrock-server-${VERSION}.zip \
     && chmod 755 /minecraft/bedrock_server

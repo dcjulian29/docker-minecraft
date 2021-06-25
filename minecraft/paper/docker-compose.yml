@@ -7,7 +7,7 @@ services:
     ports:
       - '25565:25565'
     volumes:
-      - ./.docker/paper/world:/minecraft/world
-      - ./.docker/paper/nether:/minecraft/world_nether
-      - ./.docker/paper/the_end:/minecraft/world_the_end
-      - ./ops.json:/minecraft/ops.json
+      - ../.docker/paper/world:/minecraft/world
+      - ../.docker/paper/nether:/minecraft/world_nether
+      - ../.docker/paper/the_end:/minecraft/world_the_end
+      - ../ops.json:/minecraft/ops.json

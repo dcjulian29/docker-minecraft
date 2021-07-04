@@ -20,8 +20,8 @@ docker tag dcjulian29/minecraft:%VERSION%-vanilla dcjulian29/minecraft:latest-va
 popd
 
 pushd bedrock
-docker build --progress plain -t dcjulian29/minecraft:%BEDROCK%-bedrock .
-docker tag dcjulian29/minecraft:%BEDROCK%-bedrock dcjulian29/minecraft:latest-bedrock
+docker build --progress plain -t dcjulian29/bedrock:%BEDROCK% .
+docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
 popd
 
 pushd bungeecord

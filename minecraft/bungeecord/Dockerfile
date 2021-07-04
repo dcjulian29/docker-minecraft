@@ -12,4 +12,4 @@ VOLUME [ "/minecraft/config.yml" ]
 
 WORKDIR /minecraft
 
-ENTRYPOINT [ "java", "-XX:MaxRAMFraction=1", "-XshowSettings:vm", "-XX:+UseG1GC", "-jar", "/minecraft/BungeeCord.jar", "nogui" ]
+ENTRYPOINT [ "java", "-XX:InitialRAMPercentage=75", "-XX:MinRAMPercentage=75", "-XX:MaxRAMPercentage=75", "-XshowSettings:vm", "-XX:+UseG1GC", "-jar", "/minecraft/BungeeCord.jar", "nogui" ]

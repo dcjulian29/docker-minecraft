@@ -14,9 +14,9 @@ docker build --progress plain -t dcjulian29/minecraft:%VERSION%-paper .
 docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
 popd
 
-pushd vanilla
-docker build --progress plain -t dcjulian29/minecraft:%VERSION%-vanilla .
-docker tag dcjulian29/minecraft:%VERSION%-vanilla dcjulian29/minecraft:latest-vanilla
+pushd spigot
+docker build --progress plain -t dcjulian29/minecraft:%VERSION%-spigot .
+docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
 popd
 
 pushd bedrock

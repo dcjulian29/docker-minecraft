@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  minecraft:
+    image: 'dcjulian29/minecraft:latest-spigot'
+    environment:
+      - TZ=America/New_York
+    ports:
+      - '25565:25565'
+    volumes:
+      - ../.docker/spigot/world:/minecraft/world
+      - ../.docker/spigot/nether:/minecraft/world_nether
+      - ../.docker/spigot/the_end:/minecraft/world_the_end
+      - ../ops.json:/minecraft/ops.json

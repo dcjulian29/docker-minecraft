@@ -8,5 +8,6 @@ setlocal
 
 docker push dcjulian29/minecraft  --all-tags
 docker push dcjulian29/bungeecord --all-tags
+docker push dcjulian29/bedrock --all-tags
 
 endlocal

@@ -14,7 +14,7 @@ services:
       - ../ops.json:/minecraft/ops.json
       - ./server.properties:/minecraft/server.properties
       - ../whitelist.json:/minecraft/whitelist.json
-      - ../.docker/logs-paper:/minecraft/log
+      - ../.docker/logs-paper:/minecraft/logs
       - ../.docker/paper/world:/minecraft/world
       - ../.docker/paper/nether:/minecraft/world_nether
       - ../.docker/paper/the_end:/minecraft/world_the_end

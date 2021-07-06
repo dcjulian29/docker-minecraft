@@ -7,8 +7,18 @@ services:
     ports:
       - '8123:8123'
       - '25565:25565'
+      - '19132:19132/udp'
     volumes:
+      - ../banned-ip.json:/minecraft/banned-ip.json
+      - ../banned-players.json:/minecraft/banned-players.json
+      - ../ops.json:/minecraft/ops.json
+      - ./server.properties:/minecraft/server.properties
+      - ../whitelist.json:/minecraft/whitelist.json
+      - ../.docker/logs-paper:/minecraft/log
       - ../.docker/paper/world:/minecraft/world
       - ../.docker/paper/nether:/minecraft/world_nether
       - ../.docker/paper/the_end:/minecraft/world_the_end
-      - ../ops.json:/minecraft/ops.json
+      - ../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles
+      - ./bukkit.yml:/minecraft/bukkit.yml
+      - ./spigot.yml:/minecraft/spigot.yml
+      - ./paper.yml:/minecraft/paper.yml

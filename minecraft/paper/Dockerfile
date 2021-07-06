@@ -18,5 +18,20 @@ FROM dcjulian29/minecraft:latest
 COPY --from=0 /minecraft/plugins/*.jar ./plugins/
 COPY --from=0 /minecraft/paper.jar ./
 EXPOSE 8123 25565 19132/udp
-VOLUME [ "/minecraft/world", "/minecraft/world_nether", "/minecraft/world_the_end" ]
-ENTRYPOINT [ "java", "-XX:InitialRAMPercentage=75", "-XX:MinRAMPercentage=75", "-XX:MaxRAMPercentage=75", "-XshowSettings:vm", "-jar", "/minecraft/paper.jar", "nogui" ]
+VOLUME \
+    "/minecraft/bukkit.yml" \
+    "/minecraft/spigot.yml" \
+    "/minecraft/paper.yml" \
+    "/minecraft/world_nether" \
+    "/minecraft/world_the_end" \
+    "/minecraft/plugins/dynmap/web/tiles"
+ENTRYPOINT [ \
+    "java", \
+    "-XX:InitialRAMPercentage=75", \
+    "-XX:MinRAMPercentage=75", \
+    "-XX:MaxRAMPercentage=75", \
+    "-XshowSettings:vm", \
+    "-jar", \
+    "/minecraft/paper.jar", \
+    "nogui" \
+    ]

@@ -12,5 +12,21 @@ ENV TZ=UTC
 WORKDIR /minecraft
 COPY --from=0 /minecraft .
 EXPOSE 25565
-VOLUME [ "/minecraft/world" ]
-ENTRYPOINT [ "java", "-XX:InitialRAMPercentage=75", "-XX:MinRAMPercentage=75", "-XX:MaxRAMPercentage=75", "-XshowSettings:vm", "-jar", "/minecraft/server.jar", "nogui" ]
+VOLUME \
+    "/minecraft/banned-ip.json" \
+    "/minecraft/banned-players.json" \
+    "/minecraft/ops.json" \
+    "/minecraft/server.properties" \
+    "/minecraft/whitelist.json" \
+    "/minecraft/logs" \
+    "/minecraft/world"
+ENTRYPOINT [ \
+    "java", \
+    "-XX:InitialRAMPercentage=75", \
+    "-XX:MinRAMPercentage=75", \
+    "-XX:MaxRAMPercentage=75", \
+    "-XshowSettings:vm", \
+    "-jar", \
+    "/minecraft/server.jar", \
+    "nogui" \
+    ]

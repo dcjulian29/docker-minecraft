@@ -31,7 +31,7 @@ ENTRYPOINT [ \
     "-XX:MinRAMPercentage=75", \
     "-XX:MaxRAMPercentage=75", \
     "-XshowSettings:vm", \
-    "-XX:+UnlockExperimentalVMOptions
+    "-XX:+UnlockExperimentalVMOptions", \
     "-XX:+UseG1GC", \
     "-XX:+AlwaysPreTouch", \
     "-XX:+DisableExplicitGC", \

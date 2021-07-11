@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk add wget \
     && mkdir /minecraft && cd /minecraft \
-    && wget --progress=bar:force "https://papermc.io/api/v2/projects/paper/versions/1.17/builds/75/downloads/paper-1.17-75.jar" -O paper.jar \
+    && wget --progress=bar:force "https://papermc.io/api/v2/projects/paper/versions/1.17.1/builds/99/downloads/paper-1.17.1-99.jar" -O paper.jar \
     && mkdir /minecraft/plugins && cd /minecraft/plugins \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3283/695/worldedit-bukkit-7.2.5-dist.jar" \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3342/964/worldguard-bukkit-7.0.5-dist.jar" \
@@ -31,6 +31,24 @@ ENTRYPOINT [ \
     "-XX:MinRAMPercentage=75", \
     "-XX:MaxRAMPercentage=75", \
     "-XshowSettings:vm", \
+    "-XX:+UnlockExperimentalVMOptions
+    "-XX:+UseG1GC", \
+    "-XX:+AlwaysPreTouch", \
+    "-XX:+DisableExplicitGC", \
+    "-XX:G1MaxNewSizePercent=40", \
+    "-XX:G1NewSizePercent=30", \
+    "-XX:G1MixedGCCountTarget=4", \
+    "-XX:G1MixedGCLiveThresholdPercent=90", \
+    "-XX:G1HeapRegionSize=8M", \
+    "-XX:G1HeapWastePercent=5", \
+    "-XX:G1ReservePercent=20", \
+    "-XX:G1RSetUpdatingPauseTimePercent=5", \
+    "-XX:InitiatingHeapOccupancyPercent=15", \
+    "-XX:MaxGCPauseMillis=200", \
+    "-XX:MaxTenuringThreshold=1", \
+    "-XX:+ParallelRefProcEnabled", \
+    "-XX:+PerfDisableSharedMem", \
+    "-XX:SurvivorRatio=32", \
     "-jar", \
     "/minecraft/paper.jar", \
     "nogui" \

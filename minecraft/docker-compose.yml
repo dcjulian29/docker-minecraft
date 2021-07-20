@@ -7,7 +7,7 @@ services:
     ports:
       - '25565:25565'
     volumes:
-      - ./banned-ip.json:/minecraft/banned-ip.json
+      - ./banned-ips.json:/minecraft/banned-ips.json
       - ./banned-players.json:/minecraft/banned-players.json
       - ./ops.json:/minecraft/ops.json
       - ./server.properties:/minecraft/server.properties

@@ -13,7 +13,7 @@ WORKDIR /minecraft
 COPY --from=0 /minecraft .
 EXPOSE 25565
 VOLUME \
-    "/minecraft/banned-ip.json" \
+    "/minecraft/banned-ips.json" \
     "/minecraft/banned-players.json" \
     "/minecraft/ops.json" \
     "/minecraft/server.properties" \

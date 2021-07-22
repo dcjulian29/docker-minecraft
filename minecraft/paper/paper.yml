@@ -14,6 +14,7 @@ verbose: false
 use-display-name-in-quit-message: false
 config-version: 20
 settings:
+  log-named-entity-deaths: true
   save-empty-scoreboard-teams: false
   incoming-packet-spam-threshold: 300
   enable-player-collisions: true
@@ -276,3 +277,9 @@ world-settings:
       fix-invulnerable-end-crystal-exploit: true
     squid-spawn-height:
       maximum: 0.0
+    mob-effects:
+      undead-immune-to-certain-effects: true
+      spiders-immune-to-poison-effect: true
+      immune-to-wither-effect:
+        wither: true
+        wither-skeleton: true

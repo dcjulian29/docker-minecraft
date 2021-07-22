@@ -10,7 +10,7 @@ services:
       - ./banned-ips.json:/minecraft/banned-ips.json
       - ./banned-players.json:/minecraft/banned-players.json
       - ./ops.json:/minecraft/ops.json
-      - ./server.properties:/minecraft/server.properties
+      - ./server.properties:/minecraft/server.properties:ro
       - ./whitelist.json:/minecraft/whitelist.json
       - ./.docker/logs-vanilla:/minecraft/logs
       - ./.docker/vanilla:/minecraft/world

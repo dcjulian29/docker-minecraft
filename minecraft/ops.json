@@ -4,5 +4,17 @@
     "name": "dcjulian29",
     "level": 4,
     "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "***REMOVED***",
+    "name": "player2",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "***REMOVED***",
+    "name": "player1",
+    "level": 4,
+    "bypassesPlayerLimit": false
   }
 ]

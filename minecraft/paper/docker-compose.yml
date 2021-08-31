@@ -18,7 +18,11 @@ services:
       - ../.docker/paper/world:/minecraft/world
       - ../.docker/paper/nether:/minecraft/world_nether
       - ../.docker/paper/the_end:/minecraft/world_the_end
+      - ../.docker/paper/julian:/minecraft/julian
       - ../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles
       - ./bukkit.yml:/minecraft/bukkit.yml
       - ./spigot.yml:/minecraft/spigot.yml
       - ./paper.yml:/minecraft/paper.yml
+      - ./worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
+      - ./portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
+      - ../.docker/paper/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log

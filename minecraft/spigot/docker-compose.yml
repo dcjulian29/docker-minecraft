@@ -18,6 +18,10 @@ services:
       - ../.docker/spigot/world:/minecraft/world
       - ../.docker/spigot/nether:/minecraft/world_nether
       - ../.docker/spigot/the_end:/minecraft/world_the_end
+      - ../.docker/spigot/julian:/minecraft/julian
       - ../.docker/spigot/dynmap:/minecraft/plugins/dynmap/web/tiles
       - ./bukkit.yml:/minecraft/bukkit.yml
       - ./spigot.yml:/minecraft/spigot.yml
+      - ./worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
+      - ./portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
+      - ../.docker/spigot/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log

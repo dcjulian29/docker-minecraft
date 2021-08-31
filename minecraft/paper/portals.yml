@@ -1,0 +1,21 @@
+portals:
+  julian-world:
+    entryfee:
+      amount: 0.0
+    safeteleport: true
+    teleportnonplayers: false
+    handlerscript: ''
+    owner: dcjulian29
+    location: 41.0,62.0,226.0:41.0,66.0,229.0
+    world: julian
+    destination: p:world-julian:W
+  world-julian:
+    entryfee:
+      amount: 0.0
+    safeteleport: true
+    teleportnonplayers: false
+    handlerscript: ''
+    owner: dcjulian29
+    location: 56.0,72.0,-66.0:56.0,75.0,-63.0
+    world: world
+    destination: p:julian-world:W

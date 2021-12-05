@@ -2,12 +2,12 @@ FROM alpine:latest
 
 RUN apk add wget git \
     && mkdir /minecraft && cd /minecraft \
-    && wget --progress=bar:force "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar" \
+    && wget --progress=bar:force "https://launcher.mojang.com/v1/objects/3cf24a8694aca6267883b17d934efacc5e44440d/server.jar" \
     && echo eula=true > eula.txt
 
 #---------------------------------------------
 
-FROM openjdk:16-jdk-slim
+FROM openjdk:17-jdk-slim
 ENV TZ=UTC
 WORKDIR /minecraft
 COPY --from=0 /minecraft .

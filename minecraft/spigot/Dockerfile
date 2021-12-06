@@ -1,6 +1,6 @@
 FROM dcjulian29/minecraft:latest
 
-ENV VERSION=1.17.1
+ENV VERSION=1.18
 
 RUN apt update && apt install -y wget git
 
@@ -11,21 +11,20 @@ RUN cd /tmp \
     && mv spigot-${VERSION}.jar /minecraft/spigot.jar \
     && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar \
     && mkdir /minecraft/plugins && cd /minecraft/plugins \
-    && wget --progress=bar:force "https://media.forgecdn.net/files/3283/695/worldedit-bukkit-7.2.5-dist.jar" \
-    && wget --progress=bar:force "https://media.forgecdn.net/files/3380/93/worldguard-bukkit-7.0.6-beta1-dist.jar" \
-    && wget --progress=bar:force "https://media.forgecdn.net/files/3362/854/Multiverse-Core-4.3.0.jar" \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3502/99/worldedit-bukkit-7.2.7.jar" \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3461/546/worldguard-bukkit-7.0.6-dist.jar" \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar" \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar" \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3074/616/Multiverse-NetherPortals-4.2.1.jar" \
     && wget --progress=bar:force "https://media.forgecdn.net/files/3074/605/Multiverse-SignPortals-4.2.0.jar" \
-    && wget --progress=bar:force "https://media.forgecdn.net/files/2744/510/LaggRemover-2.0.6.jar" \
-    && wget --progress=bar:force "https://dynmap.us/releases/Dynmap-3.2-beta-2-spigot.jar" \
+    && wget --progress=bar:force "https://media.forgecdn.net/files/3482/727/Dynmap-3.2.1-spigot.jar" \
     && wget --progress=bar:force "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
 
 #---------------------------------------------
 
 FROM dcjulian29/minecraft:latest
-COPY --from=0 /minecraft/plugins/*.jar ./plugins/
-COPY --from=0 /minecraft/spigot.jar /minecraft/craftbukkit.jar ./
+COPY --from=0 /minecraft/plugins /minecraft/plugins
+COPY --from=0 /minecraft/spigot.jar /minecraft/craftbukkit.jar /minecraft
 EXPOSE 8123 25565 19132/udp
 VOLUME \
     "/minecraft/bukkit.yml" \

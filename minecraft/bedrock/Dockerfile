@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ENV VERSION   1.17.2.01
+ENV VERSION   1.18.1.02
 
 RUN apk add wget unzip \
   && mkdir /minecraft && cd /minecraft \

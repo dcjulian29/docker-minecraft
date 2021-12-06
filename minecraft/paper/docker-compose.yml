@@ -25,4 +25,4 @@ services:
       - ./paper.yml:/minecraft/paper.yml
       - ./worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
       - ./portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
-      - ../.docker/paper/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log
+      #- ../.docker/paper/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log

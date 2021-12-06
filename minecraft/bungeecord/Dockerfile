@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk add wget \
     && mkdir /bungeecord && cd /bungeecord \
-    && wget --progress=bar:force "https://ci.md-5.net/job/BungeeCord/1595/artifact/bootstrap/target/BungeeCord.jar"
+    && wget --progress=bar:force "https://ci.md-5.net/job/BungeeCord/1618/artifact/bootstrap/target/BungeeCord.jar"
 
 #---------------------------------------------
 

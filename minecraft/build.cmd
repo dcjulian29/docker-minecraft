@@ -4,9 +4,9 @@ pushd %~dp0
 
 IF exist .docker ( echo .docker exists ) ELSE ( mkdir .docker && echo .docker created)
 
-set VERSION=1.17.1
-set BEDROCK=1.17.2.01
-set BUNGEECORD=1.5.95
+set VERSION=1.18.0
+set BEDROCK=1.18.1.02
+set BUNGEECORD=1.6.18
 
 echo.
 echo *

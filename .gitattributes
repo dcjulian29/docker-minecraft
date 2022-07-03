@@ -1,0 +1,15 @@
+* text=auto
+
+*.md                text
+*.gitattributes     text
+
+*.ps1               text  eol=crlf
+*.sh                text  eol=lf
+*.pl                text  eol=lf
+*.properties        text  eol=lf
+
+bukkit.yml          text  eol=lf
+spigot.yml          text  eol=lf
+paper.yml           text  eol=lf
+bungeecord.yml      text  eol=lf
+ops.json            text  eol=lf

@@ -1,17 +1,17 @@
-name: CI-Bedrock
+name: Bedrock CI
 
 on:
   push:
     branches:
       - main
     paths:
-      - Dockerfile
+      - bedrock/Dockerfile
       - VERSION_BEDROCK
   pull_request:
     branches:
       - main
     paths:
-      - Dockerfile
+      - bedrock/Dockerfile
       - VERSION_BEDROCK
   workflow_dispatch:
 
@@ -42,4 +42,5 @@ jobs:
       - name: Build the Bedrock Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: bedrock/
           tags: dcjulian29/bedrock:${{ steps.nagios.outputs.version }}-${{ steps.format-time.outputs.replaced }}

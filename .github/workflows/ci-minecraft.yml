@@ -1,4 +1,4 @@
-name: CI-Minecraft
+name: Minecraft CI
 
 on:
   push:
@@ -6,12 +6,16 @@ on:
       - main
     paths:
       - Dockerfile
+      - paper/Dockerfile
+      - spigot/Dockerfile
       - VERSION
   pull_request:
     branches:
       - main
     paths:
       - Dockerfile
+      - paper/Dockerfile
+      - spigot/Dockerfile
       - VERSION
   workflow_dispatch:
 
@@ -47,9 +51,11 @@ jobs:
       - name: Build the Paper Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: paper/
           tags: dcjulian29/minecraft:${{ steps.vars.outputs.version }}-paper-${{ steps.format-time.outputs.replaced }}
 
       - name: Build the Spigot Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: spigot/
           tags: dcjulian29/minecraft:${{ steps.vars.outputs.version }}-spigot-${{ steps.format-time.outputs.replaced }}

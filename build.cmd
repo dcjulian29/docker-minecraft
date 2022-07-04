@@ -1,19 +1,20 @@
 @echo off
 setlocal
+
 pushd %~dp0
 
 IF exist .docker ( echo .docker exists ) ELSE ( mkdir .docker && echo .docker created)
 
-set VERSION=1.18.0
-set BEDROCK=1.18.1.02
-set BUNGEECORD=1.6.18
+for /f "delims=" %%x in (VERSION) do set VERSION=%%x
+for /f "delims=" %%x in (VERSION_BEDROCK) do set BEDROCK=%%x
+for /f "delims=" %%x in (VERSION_BUNGEECORD) do set BUNGEECORD=%%x
 
 echo.
 echo *
 echo * Vanilla Build (%VERSION%)
 echo *
 echo.
-docker build --no-cache --progress plain -t dcjulian29/minecraft:%VERSION% .
+docker build --progress plain -t dcjulian29/minecraft:%VERSION% .
 docker tag dcjulian29/minecraft:%VERSION% dcjulian29/minecraft:latest
 echo --------------------------------------------------------------------------------
 docker image inspect dcjulian29/minecraft:%VERSION%
@@ -54,7 +55,7 @@ echo *
 echo * Bedrock Build (%BEDROCK%)
 echo *
 echo.
-docker build --no-cache --progress plain -t dcjulian29/bedrock:%BEDROCK% .
+docker build --progress plain -t dcjulian29/bedrock:%BEDROCK% .
 docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
 popd
 echo --------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ echo *
 echo * BungeeCord Build (%BUNGEECORD%)
 echo *
 echo.
-docker build --no-cache --progress plain -t dcjulian29/bungeecord:%BUNGEECORD% .
+docker build --progress plain -t dcjulian29/bungeecord:%BUNGEECORD% .
 docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
 popd
 echo --------------------------------------------------------------------------------

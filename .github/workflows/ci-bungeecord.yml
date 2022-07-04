@@ -1,17 +1,17 @@
-name: CI-Bungeecord
+name: BungeeCord CI
 
 on:
   push:
     branches:
       - main
     paths:
-      - Dockerfile
+      - bungeecord/Dockerfile
       - VERSION_BUNGEECORD
   pull_request:
     branches:
       - main
     paths:
-      - Dockerfile
+      - bungeecord/Dockerfile
       - VERSION_BUNGEECORD
   workflow_dispatch:
 
@@ -42,4 +42,5 @@ jobs:
       - name: Build the Bungeecord Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: bungeecord/
           tags: dcjulian29/bungeecord:${{ steps.vars.outputs.version }}-${{ steps.format-time.outputs.replaced }}

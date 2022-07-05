@@ -6,7 +6,7 @@ RUN apk add wget \
 
 #---------------------------------------------
 
-FROM openjdk:16-jdk-slim
+FROM openjdk:17-jdk-slim
 ENV TZ=UTC
 WORKDIR /bungeecord
 COPY --from=0 /bungeecord .

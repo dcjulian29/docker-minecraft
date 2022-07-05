@@ -3,8 +3,6 @@ setlocal
 
 pushd %~dp0
 
-IF exist .docker ( echo .docker exists ) ELSE ( mkdir .docker && echo .docker created)
-
 for /f "delims=" %%x in (VERSION) do set VERSION=%%x
 for /f "delims=" %%x in (VERSION_BEDROCK) do set BEDROCK=%%x
 for /f "delims=" %%x in (VERSION_BUNGEECORD) do set BUNGEECORD=%%x
@@ -14,68 +12,86 @@ echo *
 echo * Vanilla Build (%VERSION%)
 echo *
 echo.
+
 docker build --progress plain -t dcjulian29/minecraft:%VERSION% .
+
+if ERRORLEVEL 1 (
+  popd
+  exit /b %ERRORLEVEL%
+)
+
 docker tag dcjulian29/minecraft:%VERSION% dcjulian29/minecraft:latest
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/minecraft:%VERSION%
-docker image inspect dcjulian29/minecraft:%VERSION% > .docker\minecraft_%VERSION%.json
-echo --------------------------------------------------------------------------------
 
 pushd paper
+
 echo.
 echo *
 echo * Paper Build (%VERSION%)
 echo *
 echo.
 docker build --progress plain -t dcjulian29/minecraft:%VERSION%-paper .
-docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/minecraft:%VERSION%-paper
-docker image inspect dcjulian29/minecraft:%VERSION%-paper > .docker\minecraft_%VERSION%-paper.json
-echo --------------------------------------------------------------------------------
 
+if ERRORLEVEL 1 (
+  popd
+  popd
+  exit /b %ERRORLEVEL%
+)
+
+docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
+
+popd
 pushd spigot
+
 echo.
 echo *
 echo * Spigot Build (%VERSION%)
 echo *
 echo.
-docker build --progress plain -t dcjulian29/minecraft:%VERSION%-spigot .
-docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/minecraft:%VERSION%-spigot
-docker image inspect dcjulian29/minecraft:%VERSION%-spigot > .docker\minecraft_%VERSION%-spigot.json
-echo --------------------------------------------------------------------------------
+docker build --progress plain --build-arg VERSION=1.19 -t dcjulian29/minecraft:%VERSION%-spigot .
+if ERRORLEVEL 1 (
+  popd
+  popd
+  exit /b %ERRORLEVEL%
+)
 
+docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
+
+popd
 pushd bedrock
+
 echo.
 echo *
 echo * Bedrock Build (%BEDROCK%)
 echo *
 echo.
 docker build --progress plain -t dcjulian29/bedrock:%BEDROCK% .
-docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/bedrock:%BEDROCK%
-docker image inspect dcjulian29/bedrock:%BEDROCK% > .docker\bedrock_%BEDROCK%.json
-echo --------------------------------------------------------------------------------
 
+if ERRORLEVEL 1 (
+  popd
+  popd
+  exit /b %ERRORLEVEL%
+)
+
+docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
+
+popd
 pushd bungeecord
+
 echo.
 echo *
 echo * BungeeCord Build (%BUNGEECORD%)
 echo *
 echo.
 docker build --progress plain -t dcjulian29/bungeecord:%BUNGEECORD% .
-docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/bungeecord:%BUNGEECORD%
-docker image inspect dcjulian29/bungeecord:%BUNGEECORD% > .docker\bungeecord_%BUNGEECORD%.json
-echo --------------------------------------------------------------------------------
 
+if ERRORLEVEL 1 (
+  popd
+  popd
+  exit /b %ERRORLEVEL%
+)
+
+docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
+
+popd
 popd
 endlocal

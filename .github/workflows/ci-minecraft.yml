@@ -58,4 +58,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: spigot/
+          build-args: |
+            VERSION=${{ steps.nagios.outputs.version }}
           tags: dcjulian29/minecraft:${{ steps.vars.outputs.version }}-spigot-${{ steps.format-time.outputs.replaced }}

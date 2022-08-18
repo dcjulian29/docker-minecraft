@@ -1,10 +1,10 @@
 FROM alpine:latest
 
-ENV VERSION   1.18.1.02
+ARG VERSION
 
 RUN apk add wget unzip \
   && mkdir /minecraft && cd /minecraft \
-    && wget --progress=bar:force "https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip" \
+    && wget -nv "https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip" \
     && unzip bedrock-server-${VERSION}.zip \
     && rm bedrock-server-${VERSION}.zip \
     && chmod 755 /minecraft/bedrock_server

@@ -49,19 +49,18 @@ if %errorlevel% neq 0 goto FINAL
 docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
 docker image inspect dcjulian29/minecraft:%VERSION%-spigot > .docker\minecraft_%VERSION%-spigot.json
 
-pushd bedrock
 echo.
 echo *
 echo * Bedrock Build (%BEDROCK%)
 echo *
 echo.
-docker build --no-cache --progress plain -t dcjulian29/bedrock:%BEDROCK% .
+
+docker build --build-arg VERSION=%BEDROCK% -t dcjulian29/bedrock:%BEDROCK% bedrock\.
+
+if %errorlevel% neq 0 goto FINAL
+
 docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/bedrock:%BEDROCK%
 docker image inspect dcjulian29/bedrock:%BEDROCK% > .docker\bedrock_%BEDROCK%.json
-echo --------------------------------------------------------------------------------
 
 pushd bungeecord
 echo.

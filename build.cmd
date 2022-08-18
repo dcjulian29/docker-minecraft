@@ -62,19 +62,18 @@ if %errorlevel% neq 0 goto FINAL
 docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
 docker image inspect dcjulian29/bedrock:%BEDROCK% > .docker\bedrock_%BEDROCK%.json
 
-pushd bungeecord
 echo.
 echo *
 echo * BungeeCord Build (%BUNGEECORD%)
 echo *
 echo.
-docker build --no-cache --progress plain -t dcjulian29/bungeecord:%BUNGEECORD% .
+
+docker build --build-arg VERSION=%BUNGEECORD% -t dcjulian29/bungeecord:%BUNGEECORD% bungeecord\.
+
+if %errorlevel% neq 0 goto FINAL
+
 docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/bungeecord:%BUNGEECORD%
 docker image inspect dcjulian29/bungeecord:%BUNGEECORD% > .docker\bungeecord_%BUNGEECORD%.json
-echo --------------------------------------------------------------------------------
 
 :FINAL
 

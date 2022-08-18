@@ -1,27 +1,28 @@
 FROM alpine:latest
 
-RUN apk add wget
-RUN mkdir -p /minecraft/plugins
-
-WORKDIR /minecraft/plugins
-
-RUN wget "https://api.papermc.io/v2/projects/paper/versions/1.19/builds/50/downloads/paper-1.19-50.jar" -O /minecraft/paper.jar
-
-#---------------------------------------------
-
-RUN wget "https://mediafiles.forgecdn.net/files/3697/296/worldedit-bukkit-7.2.10.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3687/506/Multiverse-NetherPortals-4.2.2.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3074/605/Multiverse-SignPortals-4.2.0.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3637/280/Dynmap-3.3.2-spigot.jar"
-RUN wget "https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
+RUN apk add wget \
+    && mkdir /minecraft && cd /minecraft \
+    && wget -nv "https://papermc.io/api/v2/projects/paper/versions/1.18/builds/42/downloads/paper-1.18-42.jar" \
+        -O paper.jar \
+    && mkdir /minecraft/plugins && cd /minecraft/plugins \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3922/624/worldedit-bukkit-7.2.12.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3687/506/Multiverse-NetherPortals-4.2.2.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3074/605/Multiverse-SignPortals-4.2.0.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3934/649/Dynmap-3.4-spigot.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/2843/593/Dynmap-WorldGuard-1.2.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3680/816/DriveBackupV2.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3695/832/DiscordSRV-Build-1.25.1.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3933/49/PvPManager.jar" \
+    && wget -nv "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
 
 #---------------------------------------------
 
 FROM dcjulian29/minecraft:latest
-COPY --from=0 /minecraft/ /minecraft/
+COPY --from=0 /minecraft/plugins /minecraft/plugins
+COPY --from=0 /minecraft/paper.jar /minecraft/
 EXPOSE 8123 25565 19132/udp
 VOLUME \
     "/minecraft/bukkit.yml" \

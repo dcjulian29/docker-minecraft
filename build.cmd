@@ -41,13 +41,13 @@ echo *
 echo * Spigot Build (%VERSION%)
 echo *
 echo.
-docker build --progress plain -t dcjulian29/minecraft:%VERSION%-spigot .
+
+docker build --build-arg VERSION=%VERSION% -t dcjulian29/minecraft:%VERSION%-spigot .
+
+if %errorlevel% neq 0 goto FINAL
+
 docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
-popd
-echo --------------------------------------------------------------------------------
-docker image inspect dcjulian29/minecraft:%VERSION%-spigot
 docker image inspect dcjulian29/minecraft:%VERSION%-spigot > .docker\minecraft_%VERSION%-spigot.json
-echo --------------------------------------------------------------------------------
 
 pushd bedrock
 echo.

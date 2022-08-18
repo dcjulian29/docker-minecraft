@@ -4,32 +4,31 @@ ARG VERSION
 
 RUN apt update && apt install -y wget git
 
-RUN mkdir -p /minecraft/plugins
-
-WORKDIR /minecraft/plugins
-
 RUN cd /tmp \
-    && wget "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" \
+    && wget -nv "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" \
     && java -jar BuildTools.jar --rev ${VERSION} \
     && java -jar BuildTools.jar --rev ${VERSION} --compile craftbukkit \
     && mv spigot-${VERSION}.jar /minecraft/spigot.jar \
-    && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar
-
-#---------------------------------------------
-
-RUN wget "https://mediafiles.forgecdn.net/files/3697/296/worldedit-bukkit-7.2.10.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3687/506/Multiverse-NetherPortals-4.2.2.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3074/605/Multiverse-SignPortals-4.2.0.jar"
-RUN wget "https://mediafiles.forgecdn.net/files/3637/280/Dynmap-3.3.2-spigot.jar"
-RUN wget "https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
+    && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar \
+    && mkdir /minecraft/plugins && cd /minecraft/plugins \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3922/624/worldedit-bukkit-7.2.12.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3687/506/Multiverse-NetherPortals-4.2.2.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3074/605/Multiverse-SignPortals-4.2.0.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3934/649/Dynmap-3.4-spigot.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/2843/593/Dynmap-WorldGuard-1.2.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3680/816/DriveBackupV2.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3695/832/DiscordSRV-Build-1.25.1.jar" \
+    && wget -nv "https://mediafiles.forgecdn.net/files/3933/49/PvPManager.jar" \
+    && wget -nv "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
 
 #---------------------------------------------
 
 FROM dcjulian29/minecraft:latest
-COPY --from=0 /minecraft /minecraft
+COPY --from=0 /minecraft/plugins /minecraft/plugins
+COPY --from=0 /minecraft/spigot.jar /minecraft/craftbukkit.jar /minecraft
 EXPOSE 8123 25565 19132/udp
 VOLUME \
     "/minecraft/bukkit.yml" \

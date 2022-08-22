@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Grab the version to use.
-        id: nagios
+        id: vars
         run: echo "::set-output name=version::$(cat VERSION_BEDROCK)"
 
       - name: Get timestamp for CI tag
@@ -43,4 +43,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: bedrock/
-          tags: dcjulian29/bedrock:${{ steps.nagios.outputs.version }}-${{ steps.format-time.outputs.replaced }}
+          build-args: |
+            VERSION=${{ steps.vars.outputs.version }}
+          tags: dcjulian29/bedrock:${{ steps.vars.outputs.version }}-${{ steps.format-time.outputs.replaced }}

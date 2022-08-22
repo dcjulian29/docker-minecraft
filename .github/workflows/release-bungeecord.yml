@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - 'c*'
+      - 'c**'
 
 jobs:
   release:

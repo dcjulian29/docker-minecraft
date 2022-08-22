@@ -28,21 +28,20 @@ echo * Paper Build (%VERSION%)
 echo *
 echo.
 
-docker build -t dcjulian29/minecraft:%VERSION%-paper .
+docker build -t dcjulian29/minecraft:%VERSION%-paper paper/.
 
 if %errorlevel% neq 0 goto FINAL
 
 docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
 docker image inspect dcjulian29/minecraft:%VERSION%-paper > .docker\minecraft_%VERSION%-paper.json
 
-pushd spigot
 echo.
 echo *
 echo * Spigot Build (%VERSION%)
 echo *
 echo.
 
-docker build --build-arg VERSION=%VERSION% -t dcjulian29/minecraft:%VERSION%-spigot .
+docker build --build-arg VERSION=%VERSION% -t dcjulian29/minecraft:%VERSION%-spigot spigot/.
 
 if %errorlevel% neq 0 goto FINAL
 

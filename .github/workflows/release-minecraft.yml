@@ -25,6 +25,7 @@ jobs:
       - name: Build the Vanilla Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: |
             dcjulian29/minecraft:${{ steps.vars.outputs.version }}
@@ -33,6 +34,7 @@ jobs:
       - name: Build the Paper Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: paper
           push: true
           tags: |
             dcjulian29/minecraft:${{ steps.vars.outputs.version }}-paper
@@ -41,6 +43,7 @@ jobs:
       - name: Build the Spigot Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: spigot
           build-args: |
             VERSION=1.19
           push: true

@@ -25,6 +25,7 @@ jobs:
       - name: Build the BungeeCord Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: bungeecord
           push: true
           tags: |
             dcjulian29/bungeecord:${{ steps.vars.outputs.version }}

@@ -25,6 +25,7 @@ jobs:
       - name: Build the Bedrock Docker image.
         uses: docker/build-push-action@v3
         with:
+          context: bedrock
           push: true
           tags: |
             dcjulian29/bedrock:${{ steps.vars.outputs.version }}

@@ -26,6 +26,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: bungeecord
+          build-args: |
+            VERSION=${{ steps.vars.outputs.version }}
           push: true
           tags: |
             dcjulian29/bungeecord:${{ steps.vars.outputs.version }}

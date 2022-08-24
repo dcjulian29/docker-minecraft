@@ -45,7 +45,7 @@ jobs:
         with:
           context: spigot
           build-args: |
-            VERSION=1.19
+            VERSION=${{ steps.vars.outputs.version }}
           push: true
           tags: |
              dcjulian29/minecraft:${{ steps.vars.outputs.version }}-spigot

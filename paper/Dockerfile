@@ -1,8 +1,11 @@
 FROM alpine:latest
 
+ARG VERSION=1.19.2
+ARG BUILD=132
+
 RUN apk add wget \
     && mkdir /minecraft && cd /minecraft \
-    && wget -nv "https://papermc.io/api/v2/projects/paper/versions/1.18/builds/42/downloads/paper-1.18-42.jar" \
+    && wget -nv "https://api.papermc.io/v2/projects/paper/versions/${VERSION}/builds/${BUILD}/downloads/paper-${VERSION}-${BUILD}.jar" \
         -O paper.jar \
     && mkdir /minecraft/plugins && cd /minecraft/plugins \
     && wget -nv "https://mediafiles.forgecdn.net/files/3922/624/worldedit-bukkit-7.2.12.jar" \

@@ -3,7 +3,7 @@ name: BungeeCord Release
 on:
   push:
     tags:
-      - 'c[0-9].*'
+      - 'c[0-9]*'
 
 jobs:
   release:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Grab the version to use.
         id: vars
-        run: echo "::set-output name=version::$(echo ${GITHUB_REF:11})"
+        run: echo "::set-output name=version::$(echo ${GITHUB_REF:12})"
 
       - name: Build the BungeeCord Docker image.
         uses: docker/build-push-action@v3

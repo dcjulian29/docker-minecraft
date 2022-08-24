@@ -11,7 +11,7 @@ RUN apk add wget unzip \
 
 #---------------------------------------------
 
-FROM ubuntu:latest
+FROM ubuntu:jammy
 ENV TZ=UTC \
     LD_LIBRARY_PATH=/minecraft
 WORKDIR /minecraft

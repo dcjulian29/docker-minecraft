@@ -1,9 +1,7 @@
-name: Release Image - BungeeCord
+name: BungeeCord Release
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'c[0-9].*'
 

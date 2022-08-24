@@ -1,9 +1,7 @@
-name: Release Image - Bedrock
+name: Bedrock Release
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'b[0-9].*'
 

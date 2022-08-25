@@ -26,7 +26,7 @@ echo * Paper Build (%VERSION%)
 echo *
 echo.
 
-docker build -t dcjulian29/minecraft:%VERSION%-paper paper/.
+docker build --build-arg VERSION=%VERSION% -t dcjulian29/minecraft:%VERSION%-paper paper/.
 
 if %errorlevel% neq 0 goto FINAL
 

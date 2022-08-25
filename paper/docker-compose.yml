@@ -9,20 +9,20 @@ services:
       - '25565:25565'
       - '19132:19132/udp'
     volumes:
-      - ../banned-ips.json:/minecraft/banned-ips.json
-      - ../banned-players.json:/minecraft/banned-players.json
+      - ../.docker/banned-ips.json:/minecraft/banned-ips.json
+      - ../.docker/banned-players.json:/minecraft/banned-players.json
       - ../.docker/ops.json:/minecraft/ops.json
-      - ./server.properties:/minecraft/server.properties:ro
-      - ../whitelist.json:/minecraft/whitelist.json
-      - ../.docker/logs-paper:/minecraft/logs
-      - ../.docker/paper/world:/minecraft/world
+      - ../.docker/whitelist.json:/minecraft/whitelist.json
+      - ../.docker/paper/bukkit.yml:/minecraft/bukkit.yml
+      - ../.docker/paper/server.properties:/minecraft/server.properties:ro
+      - ../.docker/paper/spigot.yml:/minecraft/spigot.yml
+      - ../.docker/paper/worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
+      - ../.docker/paper/portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
+      - ../.docker/paper/config:/minecraft/config
+      - ../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles
+      - ../.docker/paper/julian:/minecraft/julian
+      - ../.docker/paper/logs:/minecraft/logs
       - ../.docker/paper/nether:/minecraft/world_nether
       - ../.docker/paper/the_end:/minecraft/world_the_end
-      - ../.docker/paper/julian:/minecraft/julian
-      - ../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles
-      - ./bukkit.yml:/minecraft/bukkit.yml
-      - ./spigot.yml:/minecraft/spigot.yml
-      - ./paper.yml:/minecraft/paper.yml
-      - ./worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
-      - ./portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
-      - ../.docker/paper/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log
+      - ../.docker/paper/world:/minecraft/world
+      - ../.docker/plugins:/minecraft/plugins

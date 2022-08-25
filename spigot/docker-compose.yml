@@ -9,19 +9,19 @@ services:
       - '25565:25565'
       - '19132:19132/udp'
     volumes:
-      - ../banned-ips.json:/minecraft/banned-ips.json
-      - ../banned-players.json:/minecraft/banned-players.json
+      - ../.docker/banned-ips.json:/minecraft/banned-ips.json
+      - ../.docker/banned-players.json:/minecraft/banned-players.json
       - ../.docker/ops.json:/minecraft/ops.json
-      - ./server.properties:/minecraft/server.properties:ro
-      - ../whitelist.json:/minecraft/whitelist.json
-      - ../.docker/logs-spigot:/minecraft/logs
-      - ../.docker/spigot/world:/minecraft/world
-      - ../.docker/spigot/nether:/minecraft/world_nether
-      - ../.docker/spigot/the_end:/minecraft/world_the_end
-      - ../.docker/spigot/julian:/minecraft/julian
-      - ../.docker/spigot/dynmap:/minecraft/plugins/dynmap/web/tiles
-      - ./bukkit.yml:/minecraft/bukkit.yml
-      - ./spigot.yml:/minecraft/spigot.yml
-      - ./worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
-      - ./portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
-      - ../.docker/spigot/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log
+      - ../.docker/whitelist.json:/minecraft/whitelist.json
+      - ../.docker/spigot/bukkit.yml:/minecraft/bukkit.yml
+      - ../.docker/spigot/server.properties:/minecraft/server.properties:ro
+      - ../.docker/spigot/spigot.yml:/minecraft/spigot.yml
+      - ../.docker/spigot/worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
+      - ../.docker/spigot/portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
+      - ../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles
+      - ../.docker/paper/julian:/minecraft/julian
+      - ../.docker/paper/logs:/minecraft/logs
+      - ../.docker/paper/nether:/minecraft/world_nether
+      - ../.docker/paper/the_end:/minecraft/world_the_end
+      - ../.docker/paper/world:/minecraft/world
+      - ../.docker/plugins:/minecraft/plugins

@@ -7,10 +7,10 @@ services:
     ports:
       - '25565:25565'
     volumes:
-      - ./banned-ips.json:/minecraft/banned-ips.json
-      - ./banned-players.json:/minecraft/banned-players.json
-      - ./ops.json:/minecraft/ops.json
       - ./server.properties:/minecraft/server.properties:ro
-      - ./whitelist.json:/minecraft/whitelist.json
-      - ./.docker/logs-vanilla:/minecraft/logs
-      - ./.docker/vanilla:/minecraft/world
+      - ./.docker/banned-ips.json:/minecraft/banned-ips.json
+      - ./.docker/banned-players.json:/minecraft/banned-players.json
+      - ./.docker/ops.json:/minecraft/ops.json
+      - ./.docker/whitelist.json:/minecraft/whitelist.json
+      - ./.docker/vanilla/logs:/minecraft/logs
+      - ./.docker/vanilla/world:/minecraft/world

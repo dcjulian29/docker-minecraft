@@ -9,33 +9,25 @@ RUN cd /tmp \
     && java -jar BuildTools.jar --rev ${VERSION} \
     && java -jar BuildTools.jar --rev ${VERSION} --compile craftbukkit \
     && mv spigot-${VERSION}.jar /minecraft/spigot.jar \
-    && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar \
-    && mkdir /minecraft/plugins && cd /minecraft/plugins \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3922/624/worldedit-bukkit-7.2.12.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3687/506/Multiverse-NetherPortals-4.2.2.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3074/605/Multiverse-SignPortals-4.2.0.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3934/649/Dynmap-3.4-spigot.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/2843/593/Dynmap-WorldGuard-1.2.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3680/816/DriveBackupV2.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3695/832/DiscordSRV-Build-1.25.1.jar" \
-    && wget -nv "https://mediafiles.forgecdn.net/files/3933/49/PvPManager.jar" \
-    && wget -nv "https://ci.opencollab.dev//job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar"
+    && mv craftbukkit-${VERSION}.jar /minecraft/craftbukkit.jar
 
 #---------------------------------------------
 
 FROM dcjulian29/minecraft:latest
-COPY --from=0 /minecraft/plugins /minecraft/plugins
+
+RUN mkdir /minecraft/plugins
+
 COPY --from=0 /minecraft/spigot.jar /minecraft/craftbukkit.jar /minecraft
-EXPOSE 8123 25565 19132/udp
+
+EXPOSE 25565
+
 VOLUME \
     "/minecraft/bukkit.yml" \
     "/minecraft/spigot.yml" \
+    "/minecraft/plugins" \
     "/minecraft/world_nether" \
-    "/minecraft/world_the_end" \
-    "/minecraft/plugins/dynmap/web/tiles"
+    "/minecraft/world_the_end"
+
 ENTRYPOINT [ \
     "java", \
     "-XX:InitialRAMPercentage=75", \
@@ -64,6 +56,7 @@ ENTRYPOINT [ \
     "/minecraft/spigot.jar", \
     "nogui" \
     ]
+
 HEALTHCHECK --interval=30s \
             --timeout=5s \
             --start-period=10s \

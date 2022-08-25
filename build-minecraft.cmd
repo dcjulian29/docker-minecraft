@@ -6,8 +6,6 @@ pushd %~dp0
 IF exist .docker ( echo .docker exists ) ELSE ( mkdir .docker && echo .docker created)
 
 for /f "delims=" %%x in (VERSION) do set VERSION=%%x
-for /f "delims=" %%x in (VERSION_BEDROCK) do set BEDROCK=%%x
-for /f "delims=" %%x in (VERSION_BUNGEECORD) do set BUNGEECORD=%%x
 
 echo.
 echo *
@@ -47,32 +45,6 @@ if %errorlevel% neq 0 goto FINAL
 
 docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
 docker image inspect dcjulian29/minecraft:%VERSION%-spigot > .docker\minecraft_%VERSION%-spigot.json
-
-echo.
-echo *
-echo * Bedrock Build (%BEDROCK%)
-echo *
-echo.
-
-docker build --build-arg VERSION=%BEDROCK% -t dcjulian29/bedrock:%BEDROCK% bedrock\.
-
-if %errorlevel% neq 0 goto FINAL
-
-docker tag dcjulian29/bedrock:%BEDROCK% dcjulian29/bedrock:latest
-docker image inspect dcjulian29/bedrock:%BEDROCK% > .docker\bedrock_%BEDROCK%.json
-
-echo.
-echo *
-echo * BungeeCord Build (%BUNGEECORD%)
-echo *
-echo.
-
-docker build --build-arg VERSION=%BUNGEECORD% -t dcjulian29/bungeecord:%BUNGEECORD% bungeecord\.
-
-if %errorlevel% neq 0 goto FINAL
-
-docker tag dcjulian29/bungeecord:%BUNGEECORD% dcjulian29/bungeecord:latest
-docker image inspect dcjulian29/bungeecord:%BUNGEECORD% > .docker\bungeecord_%BUNGEECORD%.json
 
 :FINAL
 

@@ -20,7 +20,7 @@ jobs:
 
       - name: Grab the version to use.
         id: vars
-        run: echo "::set-output name=version::$(echo ${GITHUB_REF:11})"
+        run: echo "version=$(echo ${GITHUB_REF:11})" >> $GITHUB_OUTPUT
 
       - name: Build the Bedrock Docker image.
         uses: docker/build-push-action@v3

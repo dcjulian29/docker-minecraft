@@ -24,7 +24,7 @@ jobs:
 
       - name: Grab the version to use.
         id: vars
-        run: echo "::set-output name=version::$(cat VERSION_BUNGEECORD)"
+        run: echo "version=$(cat VERSION_BUNGEECORD)" >> $GITHUB_OUTPUT
 
       - name: Get timestamp for CI tag
         uses: gerred/actions/current-time@master

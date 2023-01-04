@@ -6,6 +6,7 @@ pushd %~dp0
 IF exist .docker ( echo .docker exists ) ELSE ( mkdir .docker && echo .docker created)
 
 for /f "delims=" %%x in (VERSION) do set VERSION=%%x
+for /f "delims=" %%x in (VERSION_PAPER) do set VERSION_PAPER=%%x
 
 echo.
 echo *
@@ -22,11 +23,11 @@ docker image inspect dcjulian29/minecraft:%VERSION% > .docker\minecraft_%VERSION
 
 echo.
 echo *
-echo * Paper Build (%VERSION%)
+echo * Paper Build (%VERSION%-%VERSION_PAPER%) 
 echo *
 echo.
 
-docker build --build-arg VERSION=%VERSION% -t dcjulian29/minecraft:%VERSION%-paper paper/.
+docker build --build-arg VERSION=%VERSION% --build-arg BUILD=%VERSION_PAPER% -t dcjulian29/minecraft:%VERSION%-paper paper/.
 
 if %errorlevel% neq 0 goto FINAL
 

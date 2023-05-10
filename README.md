@@ -2,7 +2,7 @@
 
 [![GitHub Issues](https://img.shields.io/github/issues-raw/dcjulian29/docker-minecraft.svg)](https://github.com/dcjulian29/docker-minecraft/issues)
 
-[![Minecraft CI](https://github.com/dcjulian29/docker-minecraft/actions/workflows/ci-minecraft.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/ci-minecraft.yml) [![Bedrock CI](https://github.com/dcjulian29/docker-minecraft/actions/workflows/ci-bedrock.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/ci-bedrock.yml) [![BungeeCord CI](https://github.com/dcjulian29/docker-minecraft/actions/workflows/ci-bungeecord.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/ci-bungeecord.yml)
+[![Minecraft Build](https://github.com/dcjulian29/docker-minecraft/actions/workflows/docker-minecraft.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/docker-minecraft.yml) [![Bedrock Build](https://github.com/dcjulian29/docker-minecraft/actions/workflows/docker-bedrock.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/docker-bedrock.yml) [![BungeeCord Build](https://github.com/dcjulian29/docker-minecraft/actions/workflows/docker-bungeecord.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/docker-bungeecord.yml)
 
 [![Minecraft Release](https://github.com/dcjulian29/docker-minecraft/actions/workflows/release-minecraft.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/release-minecraft.yml) [![Minecraft Version](https://img.shields.io/docker/v/dcjulian29/minecraft?sort=semver)](https://hub.docker.com/repository/docker/dcjulian29/minecraft) [![Docker Pulls](https://img.shields.io/docker/pulls/dcjulian29/minecraft.svg)](https://hub.docker.com/r/dcjulian29/minecraft/)
 
@@ -10,7 +10,7 @@
 
 [![Bungeecord Release](https://github.com/dcjulian29/docker-minecraft/actions/workflows/release-bungeecord.yml/badge.svg)](https://github.com/dcjulian29/docker-minecraft/actions/workflows/release-bungeecord.yml) [![Bungeecord Version](https://img.shields.io/docker/v/dcjulian29/bungeecord)](https://hub.docker.com/repository/docker/dcjulian29/bungeecord) [![Docker Pulls](https://img.shields.io/docker/pulls/dcjulian29/bungeecord.svg)](https://hub.docker.com/r/dcjulian29/bungeecord/)
 
-A container to run a Minecraft server. Comes in three flavors:
+A container to run a Minecraft server. Comes in four flavors:
 
 * Vanilla
 * Paper

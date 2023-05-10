@@ -1,0 +1,37 @@
+name: Build Docker image - Bedrock
+
+on:
+  push:
+    paths:
+      - bedrock/Dockerfile
+      - VERSION_BEDROCK
+
+  pull_request:
+    paths:
+      - bedrock/Dockerfile
+      - VERSION_BEDROCK
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Grab the version to use.
+        id: v1
+        run: echo "version=$(cat VERSION_BEDROCK)" >> $GITHUB_OUTPUT
+
+      - name: Grab the timestamp to use.
+        id: v2
+        run: echo "timestamp=$(cat GITHUB_SHA:0:12)" >> $GITHUB_OUTPUT
+
+      - name: Build the Bedrock Docker image.
+        uses: docker/build-push-action@v3
+        with:
+          context: bedrock/
+          build-args: |
+            VERSION=${{ steps.v1.outputs.version }}
+          tags: dcjulian29/bedrock:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}

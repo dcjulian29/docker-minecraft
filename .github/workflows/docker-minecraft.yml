@@ -1,0 +1,61 @@
+name: Build Docker Image - Minecraft
+
+on:
+  push:
+    paths:
+      - Dockerfile
+      - paper/Dockerfile
+      - spigot/Dockerfile
+      - VERSION
+      - VERSION_PAPER
+
+  pull_request:
+    paths:
+      - Dockerfile
+      - paper/Dockerfile
+      - spigot/Dockerfile
+      - VERSION
+      - VERSION_PAPER
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Grab the version to use.
+        id: v1
+        run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
+
+      - name: Grab the timestamp to use.
+        id: v2
+        run: echo "timestamp=$(cat GITHUB_SHA:0:12)" >> $GITHUB_OUTPUT
+
+      - name: Grab the paper version to use.
+        id: v3
+        run: echo "version=$(cat VERSION_PAPER)" >> $GITHUB_OUTPUT
+
+      - name: Build the Vanilla Docker image.
+        uses: docker/build-push-action@v3
+        with:
+          tags: dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
+
+      - name: Build the Paper Docker image.
+        uses: docker/build-push-action@v3
+        with:
+          context: paper/
+          build-args: |
+            VERSION=${{ steps.v1.outputs.version }}
+            BUILD=${{ steps.v3.outputs.version }}
+          tags: dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
+
+      - name: Build the Spigot Docker image.
+        uses: docker/build-push-action@v3
+        with:
+          context: spigot/
+          build-args: |
+            VERSION=${{ steps.v1.outputs.version }}
+          tags: dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}

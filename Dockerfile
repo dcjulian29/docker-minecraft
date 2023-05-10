@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk add wget git \
     && mkdir /minecraft && cd /minecraft \
-    && wget -nv "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar" \
+    && wget -nv "https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar" \
     && echo eula=true > eula.txt
 
 #---------------------------------------------

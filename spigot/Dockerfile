@@ -17,7 +17,7 @@ FROM dcjulian29/minecraft:latest
 
 RUN mkdir /minecraft/plugins
 
-COPY --from=0 /minecraft/spigot.jar /minecraft/craftbukkit.jar /minecraft
+COPY --from=0 /minecraft/spigot.jar /minecraft/craftbukkit.jar /minecraft/
 
 EXPOSE 25565
 

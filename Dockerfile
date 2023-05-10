@@ -8,10 +8,13 @@ RUN apk add wget git \
 #---------------------------------------------
 
 FROM openjdk:17-jdk-slim
-ENV TZ=UTC
+
 WORKDIR /minecraft
+
 COPY --from=0 /minecraft .
+
 EXPOSE 25565
+
 VOLUME \
     "/minecraft/banned-ips.json" \
     "/minecraft/banned-players.json" \
@@ -20,6 +23,7 @@ VOLUME \
     "/minecraft/whitelist.json" \
     "/minecraft/logs" \
     "/minecraft/world"
+
 ENTRYPOINT [ \
     "java", \
     "-XX:InitialRAMPercentage=75", \
@@ -47,6 +51,7 @@ ENTRYPOINT [ \
     "-jar", \
     "/minecraft/server.jar", \
     "--nogui" ]
+
 HEALTHCHECK --interval=30s \
             --timeout=5s \
             --start-period=10s \

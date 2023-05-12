@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Grab the version to use.
-        id: vars
+        id: v1
         run: echo "version=$(echo ${GITHUB_REF:10})" >> $GITHUB_OUTPUT
 
       - name: Grab the paper version to use.
@@ -32,7 +32,7 @@ jobs:
           context: .
           push: true
           tags: |
-            dcjulian29/minecraft:${{ steps.vars.outputs.version }}
+            dcjulian29/minecraft:${{ steps.v1.outputs.version }}
             dcjulian29/minecraft:latest
 
       - name: Build the Paper Docker image.
@@ -44,16 +44,16 @@ jobs:
           context: paper
           push: true
           tags: |
-            dcjulian29/minecraft:${{ steps.vars.outputs.version }}-paper
+            dcjulian29/minecraft:${{ steps.v1.outputs.version }}-paper
             dcjulian29/minecraft:latest-paper
 
       - name: Build the Spigot Docker image.
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            VERSION=${{ steps.vars.outputs.version }}
+            VERSION=${{ steps.v1.outputs.version }}
           context: spigot
           push: true
           tags: |
-             dcjulian29/minecraft:${{ steps.vars.outputs.version }}-spigot
+             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-spigot
              dcjulian29/minecraft:latest-spigot

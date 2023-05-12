@@ -22,6 +22,10 @@ jobs:
         id: vars
         run: echo "version=$(echo ${GITHUB_REF:10})" >> $GITHUB_OUTPUT
 
+      - name: Grab the paper version to use.
+        id: v3
+        run: echo "version=$(cat VERSION_PAPER)" >> $GITHUB_OUTPUT
+
       - name: Build the Vanilla Docker image.
         uses: docker/build-push-action@v3
         with:
@@ -34,6 +38,9 @@ jobs:
       - name: Build the Paper Docker image.
         uses: docker/build-push-action@v3
         with:
+          build-args: |
+            VERSION=${{ steps.v1.outputs.version }}
+            BUILD=${{ steps.v3.outputs.version }}
           context: paper
           push: true
           tags: |
@@ -43,9 +50,9 @@ jobs:
       - name: Build the Spigot Docker image.
         uses: docker/build-push-action@v3
         with:
-          context: spigot
           build-args: |
             VERSION=${{ steps.vars.outputs.version }}
+          context: spigot
           push: true
           tags: |
              dcjulian29/minecraft:${{ steps.vars.outputs.version }}-spigot

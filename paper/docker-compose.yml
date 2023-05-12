@@ -2,27 +2,26 @@ version: '3.8'
 services:
   minecraft:
     image: 'dcjulian29/minecraft:latest-paper'
-    environment:
-      - TZ=America/New_York
     ports:
       - '8123:8123'
       - '25565:25565'
       - '19132:19132/udp'
     volumes:
-      - ../.docker/banned-ips.json:/minecraft/banned-ips.json
-      - ../.docker/banned-players.json:/minecraft/banned-players.json
-      - ../.docker/ops.json:/minecraft/ops.json
-      - ../.docker/whitelist.json:/minecraft/whitelist.json
-      - ../.docker/paper/bukkit.yml:/minecraft/bukkit.yml
-      - ../.docker/paper/server.properties:/minecraft/server.properties:ro
-      - ../.docker/paper/spigot.yml:/minecraft/spigot.yml
-      - ../.docker/paper/worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml
-      - ../.docker/paper/portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml
-      - ../.docker/paper/config:/minecraft/config
-      - ../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles
-      - ../.docker/paper/julian:/minecraft/julian
-      - ../.docker/paper/logs:/minecraft/logs
-      - ../.docker/paper/nether:/minecraft/world_nether
-      - ../.docker/paper/the_end:/minecraft/world_the_end
-      - ../.docker/paper/world:/minecraft/world
-      - ../.docker/plugins:/minecraft/plugins
+      - "/etc/localtime:/etc/localtime:ro"
+      - "../.docker/banned-ips.json:/minecraft/banned-ips.json"
+      - "../.docker/banned-players.json:/minecraft/banned-players.json"
+      - "../.docker/ops.json:/minecraft/ops.json"
+      - "../.docker/paper/server.properties:/minecraft/server.properties:ro"
+      - "../.docker/whitelist.json:/minecraft/whitelist.json"
+      - "../.docker/paper/logs:/minecraft/logs"
+      - "../.docker/paper/world:/minecraft/world"
+      - "../.docker/paper/nether:/minecraft/world_nether"
+      - "../.docker/paper/the_end:/minecraft/world_the_end"
+      - "../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles"
+      - "../.docker/paper/bukkit.yml:/minecraft/bukkit.yml"
+      - "../.docker/paper/spigot.yml:/minecraft/spigot.yml"
+      - "../.docker/paper/worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml"
+      - "../.docker/paper/portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml"
+      - "../.docker/paper/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log"
+      - "../.docker/paper/julian:/minecraft/julian"
+      - "../.docker/plugins:/minecraft/plugins"

@@ -2,26 +2,24 @@ version: '3.8'
 services:
   minecraft:
     image: 'dcjulian29/minecraft:latest-paper'
+    environment:
+      - PGID=1000
+      - PUID=1000
     ports:
       - '8123:8123'
       - '25565:25565'
-      - '19132:19132/udp'
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "../.docker/banned-ips.json:/minecraft/banned-ips.json"
       - "../.docker/banned-players.json:/minecraft/banned-players.json"
       - "../.docker/ops.json:/minecraft/ops.json"
-      - "../.docker/paper/server.properties:/minecraft/server.properties:ro"
+      - "../.docker/server.properties:/minecraft/server.properties:ro"
       - "../.docker/whitelist.json:/minecraft/whitelist.json"
+      - "../.docker/paper/config:/minecraft/config"
+      - "../.docker/plugins:/minecraft/plugins"
       - "../.docker/paper/logs:/minecraft/logs"
       - "../.docker/paper/world:/minecraft/world"
       - "../.docker/paper/nether:/minecraft/world_nether"
       - "../.docker/paper/the_end:/minecraft/world_the_end"
-      - "../.docker/paper/dynmap:/minecraft/plugins/dynmap/web/tiles"
-      - "../.docker/paper/bukkit.yml:/minecraft/bukkit.yml"
-      - "../.docker/paper/spigot.yml:/minecraft/spigot.yml"
-      - "../.docker/paper/worlds.yml:/minecraft/plugins/Multiverse-Core/worlds.yml"
-      - "../.docker/paper/portals.yml:/minecraft/plugins/Multiverse-Portals/portals.yml"
-      - "../.docker/paper/worldedit.log:/minecraft/plugins/WorldEdit/worldedit.log"
-      - "../.docker/paper/julian:/minecraft/julian"
-      - "../.docker/plugins:/minecraft/plugins"
+      - "../.docker/bukkit.yml:/minecraft/bukkit.yml"
+      - "../.docker/spigot.yml:/minecraft/spigot.yml"

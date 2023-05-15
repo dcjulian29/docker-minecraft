@@ -3,14 +3,16 @@ services:
   minecraft:
     image: 'dcjulian29/minecraft:latest'
     environment:
-      - TZ=America/New_York
+      - PGID=1000
+      - PUID=1000
     ports:
       - '25565:25565'
     volumes:
-      - ./server.properties:/minecraft/server.properties:ro
-      - ./.docker/banned-ips.json:/minecraft/banned-ips.json
-      - ./.docker/banned-players.json:/minecraft/banned-players.json
-      - ./.docker/ops.json:/minecraft/ops.json
-      - ./.docker/whitelist.json:/minecraft/whitelist.json
-      - ./.docker/vanilla/logs:/minecraft/logs
-      - ./.docker/vanilla/world:/minecraft/world
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./.docker/banned-ips.json:/minecraft/banned-ips.json"
+      - "./.docker/banned-players.json:/minecraft/banned-players.json"
+      - "./.docker/ops.json:/minecraft/ops.json"
+      - "./.docker/server.properties:/minecraft/server.properties:ro"
+      - "./.docker/whitelist.json:/minecraft/whitelist.json"
+      - "./.docker/vanilla/logs:/minecraft/logs"
+      - "./.docker/vanilla/world:/minecraft/world"

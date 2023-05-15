@@ -7,11 +7,21 @@ RUN apk add wget git \
 
 #---------------------------------------------
 
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre
 
 WORKDIR /minecraft
 
 COPY --from=0 /minecraft .
+
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+RUN apt-get update \
+  && apt-get install -y gosu \
+  && chmod 755 /docker-entrypoint.sh \
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && apt-get autoremove \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
 
 EXPOSE 25565
 
@@ -24,33 +34,9 @@ VOLUME \
     "/minecraft/logs" \
     "/minecraft/world"
 
-ENTRYPOINT [ \
-    "java", \
-    "-XX:InitialRAMPercentage=75", \
-    "-XX:MinRAMPercentage=75", \
-    "-XX:MaxRAMPercentage=75", \
-    "-XshowSettings:vm", \
-    "-XX:+UnlockExperimentalVMOptions", \
-    "-XX:+UseG1GC", \
-    "-XX:+AlwaysPreTouch", \
-    "-XX:+DisableExplicitGC", \
-    "-XX:G1MaxNewSizePercent=40", \
-    "-XX:G1NewSizePercent=30", \
-    "-XX:G1MixedGCCountTarget=4", \
-    "-XX:G1MixedGCLiveThresholdPercent=90", \
-    "-XX:G1HeapRegionSize=8M", \
-    "-XX:G1HeapWastePercent=5", \
-    "-XX:G1ReservePercent=20", \
-    "-XX:G1RSetUpdatingPauseTimePercent=5", \
-    "-XX:InitiatingHeapOccupancyPercent=15", \
-    "-XX:MaxGCPauseMillis=200", \
-    "-XX:MaxTenuringThreshold=1", \
-    "-XX:+ParallelRefProcEnabled", \
-    "-XX:+PerfDisableSharedMem", \
-    "-XX:SurvivorRatio=32", \
-    "-jar", \
-    "/minecraft/server.jar", \
-    "--nogui" ]
+ENV JAR_FILE=server.jar
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 HEALTHCHECK --interval=30s \
             --timeout=5s \

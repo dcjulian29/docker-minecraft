@@ -14,6 +14,7 @@ if ! id "$DOCKER_USER" >/dev/null 2>&1; then
   adduser $DOCKER_USER --shell /bin/sh --uid $USER_ID --ingroup $DOCKER_GROUP \
     --disabled-password --gecos "First,Last,RoomNumber,WorkPhone,HomePhone"
   chown $DOCKER_USER:$DOCKER_GROUP /minecraft
+  find /minecraft -type d -exec chown $USER_ID:$GROUP_ID {} +
 fi
 
 exec gosu $DOCKER_USER:$DOCKER_GROUP java \

@@ -1,7 +1,7 @@
 FROM alpine:latest
 
-ARG VERSION=1.19.2
-ARG BUILD=132
+ARG VERSION
+ARG BUILD
 
 RUN apk add wget \
     && wget -nv "https://api.papermc.io/v2/projects/paper/versions/${VERSION}/builds/${BUILD}/downloads/paper-${VERSION}-${BUILD}.jar" \

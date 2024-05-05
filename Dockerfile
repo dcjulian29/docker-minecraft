@@ -7,7 +7,7 @@ RUN apk add wget git \
 
 #---------------------------------------------
 
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:22-jre
 
 WORKDIR /minecraft
 

@@ -11,7 +11,7 @@ RUN apk add wget unzip \
 
 #---------------------------------------------
 
-FROM ubuntu:focal
+FROM ubuntu:22.04
 ENV TZ=UTC \
     LD_LIBRARY_PATH=/minecraft
 WORKDIR /minecraft

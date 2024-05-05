@@ -1,5 +1,5 @@
 if (-not (Test-Path "$PSScriptRoot\.docker")) {
-  New-Folder -Folder "$PSScriptRoot\.docker"
+  New-Item -ItemType Directory -Path "$PSScriptRoot\.docker" -Verbose
 }
 
 Invoke-TouchFile -Path ".\.docker\banned-ips.json"
@@ -11,21 +11,21 @@ Invoke-TouchFile -Path ".\.docker\spigot.yml"
 Invoke-TouchFile -Path ".\.docker\whitelist.json"
 
 if (-not (Test-Path "$PSScriptRoot\.docker\plugins")) {
-  New-Folder -Folder "$PSScriptRoot\.docker\plugins"
+  New-Item -ItemType Directory -Path "$PSScriptRoot\.docker\plugins" -Verbose
 }
 
 $urls = @(
-  "https://mediafilez.forgecdn.net/files/4445/117/worldedit-bukkit-7.2.14.jar"
-  "https://mediafilez.forgecdn.net/files/3677/516/worldguard-bukkit-7.0.7-dist.jar"
-  "https://mediafilez.forgecdn.net/files/3462/546/Multiverse-Core-4.3.1.jar"
-  "https://mediafilez.forgecdn.net/files/3113/114/Multiverse-Portals-4.2.1.jar"
-  "https://mediafilez.forgecdn.net/files/3687/506/Multiverse-NetherPortals-4.2.2.jar"
-  "https://mediafilez.forgecdn.net/files/4414/231/multiverse-signportals-4.2.1.jar"
-  "https://mediafilez.forgecdn.net/files/4512/871/Dynmap-3.5-spigot.jar"
-  "https://mediafilez.forgecdn.net/files/3680/816/DriveBackupV2.jar"
-  "https://mediafilez.forgecdn.net/files/3948/289/EssentialsX-2.19.7.jar"
+  "https://mediafilez.forgecdn.net/files/5168/643/worldedit-bukkit-7.3.0.jar"
+  "https://mediafilez.forgecdn.net/files/4675/318/worldguard-bukkit-7.0.9-dist.jar"
+  "https://mediafilez.forgecdn.net/files/4744/18/multiverse-core-4.3.12.jar"
+  "https://mediafilez.forgecdn.net/files/4721/154/multiverse-portals-4.2.3.jar"
+  "https://mediafilez.forgecdn.net/files/4721/150/multiverse-netherportals-4.2.3.jar"
+  "https://mediafilez.forgecdn.net/files/4721/189/multiverse-signportals-4.2.2.jar"
+  "https://mediafilez.forgecdn.net/files/5299/546/Dynmap-3.7-beta-5-spigot.jar"
+  "https://mediafilez.forgecdn.net/files/4554/611/DriveBackupV2.jar"
+  "https://mediafilez.forgecdn.net/files/4684/81/EssentialsX-2.20.1.jar"
   "https://mediafilez.forgecdn.net/files/3007/470/Vault.jar"
-  "https://ci.lucko.me/job/spark/376/artifact/spark-bukkit/build/libs/spark-1.10.38-bukkit.jar"
+  "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar"
 )
 
 foreach ($url in $urls) {
@@ -35,5 +35,5 @@ foreach ($url in $urls) {
     Remove-Item -Path $file -Force
   }
 
-  Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $file
+  Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $file -Verbose
 }

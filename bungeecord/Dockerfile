@@ -8,7 +8,7 @@ RUN apk add wget \
 
 #---------------------------------------------
 
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:22-jre
 ENV TZ=UTC
 WORKDIR /bungeecord
 COPY --from=0 /bungeecord .

@@ -13,7 +13,7 @@ name: Minecraft Bedrock
 
 jobs:
   build:
-    if: ${{ ! startsWith(github.ref, 'tags/b') }}
+    if: ${{ ! startsWith(github.ref, 'tags/') }}
     name: Build Docker image - Bedrock
     runs-on: ubuntu-latest
 

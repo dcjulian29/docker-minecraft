@@ -13,7 +13,7 @@ name: BungeeCord
 
 jobs:
   build:
-    if: ${{ ! startsWith(github.ref, 'tags/c') }}
+    if: ${{ ! startsWith(github.ref, 'tags/') }}
     name: Build Docker Image - BungeeCord
     runs-on: ubuntu-latest
 

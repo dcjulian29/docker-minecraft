@@ -26,6 +26,12 @@ $urls = @(
   "https://mediafilez.forgecdn.net/files/4684/81/EssentialsX-2.20.1.jar"
   "https://mediafilez.forgecdn.net/files/3007/470/Vault.jar"
   "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar"
+  "https://cdn.modrinth.com/data/UmLGoGij/versions/mr2CijyC/DiscordSRV-Build-1.27.0.jar"
+  "https://cdn.modrinth.com/data/MubyTbnA/versions/Y9N0QwjG/FreedomChat-1.5.2.jar"
+  "https://download.luckperms.net/1539/bukkit/loader/LuckPerms-Bukkit-5.4.126.jar"
+  "https://mediafilez.forgecdn.net/files/3599/622/NoMobGriefing-3.0.3.jar"
+  "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.10.1/PAPER/ViaVersion-4.10.1.jar"
+  "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.10.1/PAPER/ViaBackwards-4.10.1.jar"
 )
 
 foreach ($url in $urls) {

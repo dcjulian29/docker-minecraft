@@ -19,7 +19,7 @@ name: Minecraft
 
 jobs:
   build:
-    if: ${{ ! startsWith(github.ref, 'tags/') }}
+    if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
     name: Build Docker Image - Minecraft
     runs-on: ubuntu-latest
 
@@ -68,7 +68,7 @@ jobs:
             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
 
   release_minecraft:
-    if: ${{ startsWith(github.ref, 'tags/') && ! startsWith(github.ref, 'tags/b') && ! startsWith(github.ref, 'tags/c') }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') && ! startsWith(github.ref, 'refs/tags/b') && ! startsWith(github.ref, 'refs/tags/c') }}
     name: Release Docker Image - Minecraft
     runs-on: ubuntu-latest
 
@@ -95,7 +95,6 @@ jobs:
             dcjulian29/minecraft:latest
 
   release_paper:
-    if: ${{ startsWith(github.ref, 'tags/') && ! startsWith(github.ref, 'tags/b') && ! startsWith(github.ref, 'tags/c') }}
     needs: [release_minecraft]
     name: Release Docker Image - Minecraft Paper
     runs-on: ubuntu-latest
@@ -130,7 +129,6 @@ jobs:
             dcjulian29/minecraft:latest-paper
 
   release_spigot:
-    if: ${{ startsWith(github.ref, 'tags/') && ! startsWith(github.ref, 'tags/b') && ! startsWith(github.ref, 'tags/c') }}
     name: Release Docker Image - Minecraft Spigot
     needs: [release_minecraft]
     runs-on: ubuntu-latest

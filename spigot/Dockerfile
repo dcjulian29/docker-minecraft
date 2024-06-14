@@ -1,10 +1,10 @@
-FROM dcjulian29/minecraft:latest
+FROM eclipse-temurin:22-jdk
 
 ARG VERSION
 
 RUN apt update && apt install -y wget git
 
-RUN cd /tmp \
+RUN mkdir /minecraft && cd /tmp \
     && wget -nv "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" \
     && java -jar BuildTools.jar --rev ${VERSION} \
     && java -jar BuildTools.jar --rev ${VERSION} --compile craftbukkit \

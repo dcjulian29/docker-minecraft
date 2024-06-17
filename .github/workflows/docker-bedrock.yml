@@ -29,7 +29,7 @@ jobs:
         run: echo "timestamp=$(cat GITHUB_SHA:0:12)" >> $GITHUB_OUTPUT
 
       - name: Build the Bedrock Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: bedrock/
           build-args: |
@@ -55,7 +55,7 @@ jobs:
         run: echo "version=$(cat VERSION_BEDROCK)" >> $GITHUB_OUTPUT
 
       - name: Build the Bedrock Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: bedrock
           build-args: |

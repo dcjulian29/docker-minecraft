@@ -39,7 +39,7 @@ jobs:
         run: echo "version=$(cat VERSION_PAPER)" >> $GITHUB_OUTPUT
 
       - name: Build the Vanilla Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: false
@@ -47,7 +47,7 @@ jobs:
             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
 
       - name: Build the Paper Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           build-args: |
             VERSION=${{ steps.v1.outputs.version }}
@@ -58,7 +58,7 @@ jobs:
             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
 
       - name: Build the Spigot Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           build-args: |
             VERSION=${{ steps.v1.outputs.version }}
@@ -86,7 +86,7 @@ jobs:
         run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
 
       - name: Release the Vanilla Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
@@ -117,7 +117,7 @@ jobs:
         run: echo "version=$(cat VERSION_PAPER)" >> $GITHUB_OUTPUT
 
       - name: Release the Paper Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           build-args: |
             VERSION=${{ steps.v1.outputs.version }}
@@ -147,7 +147,7 @@ jobs:
         run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
 
       - name: Release the Spigot Docker image.
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           build-args: |
             VERSION=${{ steps.v1.outputs.version }}

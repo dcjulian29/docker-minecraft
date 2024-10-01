@@ -3,8 +3,8 @@ services:
   minecraft:
     image: 'dcjulian29/minecraft:latest'
     environment:
-      - PGID=1000
-      - PUID=1000
+      - PGID=1001
+      - PUID=1001
     ports:
       - '25565:25565'
     volumes:

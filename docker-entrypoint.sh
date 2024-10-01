@@ -5,14 +5,13 @@ DOCKER_USER='minecraft'
 DOCKER_GROUP='minecraft'
 
 if ! id "$DOCKER_USER" >/dev/null 2>&1; then
-  USER_ID=${PUID:-1000}
-  GROUP_ID=${PGID:-1000}
+  USER_ID=${PUID:-1001}
+  GROUP_ID=${PGID:-1001}
 
   echo "Starting with $USER_ID:$GROUP_ID (UID:GID)"
 
-  addgroup --gid $GROUP_ID $DOCKER_GROUP
-  adduser $DOCKER_USER --shell /bin/sh --uid $USER_ID --ingroup $DOCKER_GROUP \
-    --disabled-password --gecos "First,Last,RoomNumber,WorkPhone,HomePhone"
+  groupadd --gid $GROUP_ID $DOCKER_GROUP
+  useradd $DOCKER_USER --shell /bin/sh --uid $USER_ID -g $DOCKER_GROUP
   chown $DOCKER_USER:$DOCKER_GROUP /minecraft
   find /minecraft -type d -exec chown $USER_ID:$GROUP_ID {} +
 fi

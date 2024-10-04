@@ -1,10 +1,9 @@
-version: '3.8'
 services:
   minecraft:
     image: 'dcjulian29/minecraft:latest-paper'
     environment:
-      - PGID=1000
-      - PUID=1000
+      - PGID=1001
+      - PUID=1001
     ports:
       - '8123:8123'
       - '25565:25565'

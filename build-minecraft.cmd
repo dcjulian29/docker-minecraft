@@ -23,7 +23,7 @@ docker image inspect dcjulian29/minecraft:%VERSION% > .docker\minecraft_%VERSION
 
 echo.
 echo *
-echo * Paper Build (%VERSION%-%VERSION_PAPER%) 
+echo * Paper Build (%VERSION%-%VERSION_PAPER%)
 echo *
 echo.
 
@@ -33,19 +33,6 @@ if %errorlevel% neq 0 goto FINAL
 
 docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
 docker image inspect dcjulian29/minecraft:%VERSION%-paper > .docker\minecraft_%VERSION%-paper.json
-
-echo.
-echo *
-echo * Spigot Build (%VERSION%)
-echo *
-echo.
-
-docker build --build-arg VERSION=%VERSION% -t dcjulian29/minecraft:%VERSION%-spigot spigot/.
-
-if %errorlevel% neq 0 goto FINAL
-
-docker tag dcjulian29/minecraft:%VERSION%-spigot dcjulian29/minecraft:latest-spigot
-docker image inspect dcjulian29/minecraft:%VERSION%-spigot > .docker\minecraft_%VERSION%-spigot.json
 
 :FINAL
 

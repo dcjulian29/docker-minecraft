@@ -5,7 +5,6 @@ name: Minecraft
     paths:
       - Dockerfile
       - paper/Dockerfile
-      - spigot/Dockerfile
       - VERSION
       - VERSION_PAPER
 
@@ -13,7 +12,6 @@ name: Minecraft
     paths:
       - Dockerfile
       - paper/Dockerfile
-      - spigot/Dockerfile
       - VERSION
       - VERSION_PAPER
 
@@ -57,18 +55,8 @@ jobs:
           tags: |
             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
 
-      - name: Build the Spigot Docker image.
-        uses: docker/build-push-action@v6
-        with:
-          build-args: |
-            VERSION=${{ steps.v1.outputs.version }}
-          context: spigot/
-          push: false
-          tags: |
-            dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
-
   release_minecraft:
-    if: ${{ startsWith(github.ref, 'refs/tags/') && ! startsWith(github.ref, 'refs/tags/b') && ! startsWith(github.ref, 'refs/tags/c') }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
     name: Release Docker Image - Minecraft
     runs-on: ubuntu-latest
 
@@ -127,32 +115,3 @@ jobs:
           tags: |
             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-paper
             dcjulian29/minecraft:latest-paper
-
-  release_spigot:
-    name: Release Docker Image - Minecraft Spigot
-    needs: [release_minecraft]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Login to DockerHub.
-        uses: docker/login-action@v3
-        with:
-          username: dcjulian29
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      - name: Grab the version to use.
-        id: v1
-        run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
-
-      - name: Release the Spigot Docker image.
-        uses: docker/build-push-action@v6
-        with:
-          build-args: |
-            VERSION=${{ steps.v1.outputs.version }}
-          context: spigot
-          push: true
-          tags: |
-             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-spigot
-             dcjulian29/minecraft:latest-spigot

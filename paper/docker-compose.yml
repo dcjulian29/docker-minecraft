@@ -12,7 +12,7 @@ services:
       - "../.docker/banned-ips.json:/minecraft/banned-ips.json"
       - "../.docker/banned-players.json:/minecraft/banned-players.json"
       - "../.docker/ops.json:/minecraft/ops.json"
-      - "../.docker/server.properties:/minecraft/server.properties:ro"
+      - "../.docker/server.properties:/minecraft/server.properties"
       - "../.docker/whitelist.json:/minecraft/whitelist.json"
       - "../.docker/paper/config:/minecraft/config"
       - "../.docker/plugins:/minecraft/plugins"

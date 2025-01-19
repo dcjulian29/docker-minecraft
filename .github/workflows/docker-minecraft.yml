@@ -100,7 +100,6 @@ jobs:
 
   release_paper:
     needs: [release_minecraft]
-    name: Release Docker Image - Minecraft Paper
     runs-on: ubuntu-latest
 
     steps:

@@ -41,6 +41,9 @@ if %errorlevel% neq 0 goto FINAL
 docker tag dcjulian29/minecraft:%VERSION%-paper dcjulian29/minecraft:latest-paper
 docker image inspect dcjulian29/minecraft:%VERSION%-paper > .docker\minecraft_%VERSION%-paper.json
 
+IF NOT exist .docker\bukkit.yml ( type nul > .docker\bukkit.yml )
+IF NOT exist .docker\spigot.yml ( type nul > .docker\spigot.yml )
+
 :FINAL
 
 popd

@@ -44,7 +44,7 @@ jobs:
         run: echo "hash=$(cat ${{ github.workspace }}/HASH)" >> $GITHUB_OUTPUT
 
       - name: Build the Vanilla Docker image.
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             HASH=${{ steps.v4.outputs.hash }}
@@ -54,7 +54,7 @@ jobs:
             dcjulian29/minecraft:${{ steps.v1.outputs.version }}-${{ steps.v2.outputs.timestamp }}
 
       - name: Build the Paper Docker image.
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             VERSION=${{ steps.v1.outputs.version }}
@@ -88,7 +88,7 @@ jobs:
         run: echo "hash=$(cat HASH)" >> $GITHUB_OUTPUT
 
       - name: Release the Vanilla Docker image.
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             HASH=${{ steps.v2.outputs.hash }}
@@ -120,7 +120,7 @@ jobs:
         run: echo "version=$(cat VERSION_PAPER)" >> $GITHUB_OUTPUT
 
       - name: Release the Paper Docker image.
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             VERSION=${{ steps.v1.outputs.version }}
